@@ -11,7 +11,7 @@
 - SQL Server
 
   ```sql
-  --如果是在MSSMS，可以直接写表名，选中表名 alt + F1
+  --如果是在SSMS，可以直接写表名，选中表名 alt + F1
   EXEC sys.sp_help  @objname = N'TableName'
   ```
 
