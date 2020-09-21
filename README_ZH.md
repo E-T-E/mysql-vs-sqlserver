@@ -20,3 +20,18 @@
   ```sql
   show full FIELDS from tableName
   ```
+2. 判断表是否存在(不存在则创建)
+
+- SQL Server
+  ```sql
+ IF NOT EXISTS(SELECT 1 FROM TABLE)
+ BEGIN
+ CREATE TABLE ...
+ END
+  ```
+
+- Mysql
+
+  ```sql
+  CREATE TABLE IF NOT EXISTS TABLE1(ID VARCHAR(30))
+  ```
