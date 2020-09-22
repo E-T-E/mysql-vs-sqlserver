@@ -23,11 +23,12 @@
 2. 判断表是否存在(不存在则创建)
 
 - SQL Server
+
   ```sql
- IF NOT EXISTS(SELECT 1 FROM TABLE)
- BEGIN
- CREATE TABLE ...
- END
+  IF NOT EXISTS(SELECT 1 FROM TABLE)
+  BEGIN
+  CREATE TABLE ...
+  END
   ```
 
 - Mysql
