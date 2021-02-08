@@ -73,3 +73,33 @@
         ```sql
         SELECT * FROM [TableName] [WHERE ...] ORDER BY column [ASC|DESC] LIMIT {(page - 1) * rows} , {rows}
         ```
+5. 对重复数据分组后取最新一条
+    - SQL Server
+
+      ```sql
+      CREATE TABLE #testTemp
+      (
+         id          INT IDENTITY(1, 1) NOT NULL,
+         name        VARCHAR(10),
+         update_date DATETIME NULL
+      );
+
+      INSERT INTO #testTemp
+            (name,update_date)
+      VALUES ('A','2021-02-08'),
+             ('A','2021-01-01'),
+             ('B','2021-01-01'),
+             ('B','2021-02-08')
+
+      SELECT Row_number()
+         OVER(
+           partition BY name
+           ORDER BY update_date DESC) AS rowNum,*
+      FROM   #testTemp 
+      ```
+
+    - Mysql
+
+      ```sql
+      
+      ```
