@@ -103,3 +103,15 @@
       ```sql
       
       ```
+6. 判空
+    - SQL Server
+
+      ```sql
+      ISNULL( table.column, '' ) <> '' 
+      ```
+
+    - Mysql
+
+      ```sql
+      IFNULL( table.column, '' ) != '' 
+      ```
