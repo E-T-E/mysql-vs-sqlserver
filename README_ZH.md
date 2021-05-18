@@ -3,6 +3,7 @@
 ## 基本语句
 
 1. 查看表结构
+
     - SQL Server
 
       ```sql
@@ -16,6 +17,7 @@
 
       ```sql
       show full FIELDS from [tableName]
+      show full columns from [tableName]
       ```
 
 2. 判断表是否存在(不存在则创建)
@@ -73,7 +75,9 @@
         ```sql
         SELECT * FROM [TableName] [WHERE ...] ORDER BY column [ASC|DESC] LIMIT {(page - 1) * rows} , {rows}
         ```
-5. 对重复数据分组后取最新一条
+
+5. 为相同数据添加排序号
+
     - SQL Server
 
       ```sql
@@ -101,9 +105,19 @@
     - Mysql
 
       ```sql
-      
+      SELECT @row_number := CASE
+        WHEN @name = name THEN @row_number +1
+        ELSE 1
+      END as row_num,
+      @name := name as name
+      FROM testTemp,(SELECT @row_number:=0,@name:='') as t
+      ORDER BY update_date DESC; 
       ```
+
+      *此处为使用变量实现，`mysql 8.0` 也支持了 `ROW_NUMBER()`函数，用法与SQL Server 相同, 可参考 [ROW_NUMBER()](https://dev.mysql.com/doc/refman/8.0/en/window-function-descriptions.html#function_row-number) 使用*
+
 6. 判空
+
     - SQL Server
 
       ```sql
@@ -114,4 +128,61 @@
 
       ```sql
       IFNULL( table.column, '' ) != '' 
+      ```
+
+7. 备份表数据
+
+    - 未创建备份表 `xx_bak`
+        - SQL Server
+
+          ```sql
+          SELECT * 
+          INTO xx_bak
+          FROM xx
+          WHERE ...
+          ```
+
+        - Mysql
+
+          ```sql
+          CREATE TABLE xx_bak
+          SELECT * FROM xx 
+          WHERE ...
+          ```
+
+    - 已创建备份表 `xx_bak`
+        - SQL Server
+
+          ```sql
+          INSERT INTO xx_bak(column_names)
+          SELECT column_names FROM xx
+          WHERE ...
+          ```
+
+        - Mysql
+
+          ```sql
+          INSERT INTO xx_bak(column_names)
+          SELECT column_names FROM xx
+          WHERE ...
+          ```
+
+8. 创建临时表
+
+    - SQL Server
+
+      ```sql
+      CREATE TABLE #tempTable
+      (
+         Id          INT IDENTITY(1, 1) NOT NULL
+      );
+      ```
+
+    - Mysql
+
+      ```sql
+      CREATE TEMPORARY TABLE temp_table (
+        `Id` int(11) NOT NULL AUTO_INCREMENT,
+        PRIMARY KEY (`Id`)
+      );
       ```
