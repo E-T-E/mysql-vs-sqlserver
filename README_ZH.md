@@ -191,7 +191,7 @@
  - SQL Server
 
       ```sql
-      
+      -- 暂无
       ```
 
     - Mysql
