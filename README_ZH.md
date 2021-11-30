@@ -188,10 +188,10 @@
       ```
       
 9.多空格合并一个空格
- - SQL Server
+    - SQL Server
 
       ```sql
-      -- 暂无
+      
       ```
 
     - Mysql
