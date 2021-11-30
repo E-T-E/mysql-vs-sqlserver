@@ -186,3 +186,16 @@
         PRIMARY KEY (`Id`)
       );
       ```
+      
+9.多空格合并一个空格
+ - SQL Server
+
+      ```sql
+      
+      ```
+
+    - Mysql
+
+      ```sql
+      SELECT REPLACE ( REPLACE ( REPLACE ( LTRIM( RTRIM( ' Test   Name Test  Name   Test ' )), '  ', ' #' ), '# ', '' ), '#', '' )  AS str;
+      ```
