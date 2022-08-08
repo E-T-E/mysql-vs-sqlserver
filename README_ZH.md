@@ -16,8 +16,13 @@
     - Mysql
 
       ```sql
-      show full FIELDS from [tableName]
-      show full columns from [tableName]
+      -- show field with comment
+      SHOW FULL FIELDS FROM [tableName];
+      SHOW FULL COLUMNS FROM [tableName];
+      -- show field without comment
+      DESC [tableName];
+      -- show create table
+      SHOW CREATE TABLE [tableName]
       ```
 
 2. 判断表是否存在(不存在则创建)

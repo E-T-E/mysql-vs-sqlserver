@@ -19,7 +19,13 @@ about SQL Server and mysql sql diff
     - Mysql
 
       ```sql
-      SHOW FULL FIELDS FROM [tableName]
+      -- show field with comment
+      SHOW FULL FIELDS FROM [tableName];
+      SHOW FULL COLUMNS FROM [tableName];
+      -- show field without comment
+      DESC [tableName]
+      -- show create table
+      SHOW CREATE TABLE [tableName]
       ```
 
 2. Check table exists(if not exists, create it)
